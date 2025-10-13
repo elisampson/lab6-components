@@ -53,3 +53,76 @@ header::after {
   background: #f9f9f9;
 }
 
+/* --- Message Bubbles --- */
+.message {
+  max-width: 75%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 14px;
+  line-height: 1.4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message.bot {
+  align-self: flex-start;
+  background: #eeeeee;
+  color: #222;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #4a90e2;
+  color: #fff;
+}
+
+.message time {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+/* --- Input Area --- */
+footer {
+  background: #f6f6f6;
+  border-top: 1px solid #ddd;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+}
+
+button {
+  background: #b0b0b0;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 1.4rem;
+  cursor: not-allowed;
+  font-weight: 500;
+}
+
+/* --- Info Footer --- */
+footer::after {
+  content: "ℹ️ This is a static HTML/CSS demonstration. The input is disabled. See other approaches for interactive versions.";
+  background: #fff8dc;
+  border: 1px solid #f0e68c;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+  color: #555;
+  text-align: center;
+}
