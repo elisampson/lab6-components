@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat Prototype</title>
+  <title>Eliza Chat (DOM)</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="eliza.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <main>
@@ -12,26 +14,12 @@
       <h1>Eliza Chat</h1>
     </header>
 
-    <section id="chat-history" aria-live="polite">
-  <article class="message bot">
-    <img src="robot.png" alt="Bot avatar" class="avatar" />
-    <p>Hello, I’m Eliza. How are you feeling today?</p>
-    <time datetime="2025-10-11T18:00">6:00 PM</time>
-  </article>
-
-  <article class="message user">
-    <p>I’m doing okay, thanks!</p>
-    <time datetime="2025-10-11T18:01">6:01 PM</time>
-    <img src="user.png" alt="User avatar" class="avatar" />
-  </article>
-</section>
-
+    <section id="chat-history" aria-live="polite"></section>
 
     <footer>
       <form id="chat-form">
         <input
           id="user-input"
-          name="user-input"
           type="text"
           placeholder="Type your message..."
           required
