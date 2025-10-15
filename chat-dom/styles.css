@@ -53,7 +53,7 @@ header h1 {
 }
 
 header::after {
-  content: "DOM Manipulation";
+  content: "Prototype: Pure HTML/CSS (Static)";
   display: block;
   font-size: 0.8rem;
   color: #dbe9ff;
@@ -124,18 +124,13 @@ input[type="text"] {
 }
 
 button {
-  background: #4a90e2;
-  color: white;
+  background: #b0b0b0;
+  color: var(--text-light);
   border: none;
   border-radius: 20px;
   padding: 0.7rem 1.4rem;
-  cursor: pointer;
+  cursor: not-allowed;
   font-weight: 500;
-  transition: background 0.2s ease;
-}
-
-button:hover {
-  background: #357ab8;
 }
 
 /* --- Info Footer --- */
