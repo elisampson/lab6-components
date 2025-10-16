@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eliza Chat (DOM Manipulation)</title>
+  <title>DOM Manipulation</title>
   <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="script.js" defer></script>
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Eliza Chat</h1>
-    </header>
+  <main class="chat-app">
+    <div class="chat-box">
+      <header class="chat-header">
+        <h1>Chat Assistant</h1>
+        <p>Approach: DOM Manipulation</p>
+      </header>
 
-    <section id="chat-history" aria-live="polite"></section>
+      <div id="chatWindow" class="messages">
+        <p class="Bot">Hello! How can I help you?</p>
+      </div>
 
-    <footer>
-      <form id="chat-form">
-        <input
-          id="user-input"
-          type="text"
-          placeholder="Type your message..."
-          required
-        />
-        <button type="submit">Send</button>
+      <form id="chatForm">
+        <input type="text" id="messageBox" placeholder="Type a message..." />
+        <button id="sendBtn" type="submit">Send</button>
       </form>
-    </footer>
+    </div>
   </main>
-
-  <script type="module" src="script.js"></script>
 </body>
 </html>

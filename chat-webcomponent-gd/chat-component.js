@@ -7,6 +7,7 @@ class ChatInterface extends HTMLElement {
   }
 
   connectedCallback() {
+    // --- Build shadow structure ---
     this.shadowRoot.innerHTML = `
       <style>
         :host {
@@ -17,27 +18,12 @@ class ChatInterface extends HTMLElement {
           --header-bg: #4a90e2;
           --text-light: #ffffff;
           --text-dark: #222222;
-          --gradient-start: #6a5acd;
-          --gradient-mid: #836fff;
-          --gradient-end: #9370db;
-
-          position: fixed;
-          inset: 0;
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100vh;
-          width: 100vw;
-          background: linear-gradient(
-            160deg,
-            var(--gradient-start),
-            var(--gradient-mid),
-            var(--gradient-end)
-          );
+          background: linear-gradient(160deg, #6a5acd, #836fff, #9370db);
           font-family: "Segoe UI", Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
         }
 
         .chat-container {
@@ -58,19 +44,6 @@ class ChatInterface extends HTMLElement {
           text-align: center;
         }
 
-        header h1 {
-          margin: 0;
-          font-size: 1.4rem;
-        }
-
-        header::after {
-          content: "Web Component – JavaScript";
-          display: block;
-          font-size: 0.8rem;
-          color: #dbe9ff;
-          margin-top: 0.25rem;
-        }
-
         .messages {
           flex: 1;
           overflow-y: auto;
@@ -89,19 +62,10 @@ class ChatInterface extends HTMLElement {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .message.bot {
-          align-self: flex-start;
-          background: var(--bot-bg);
-          color: var(--text-dark);
-        }
+        .bot { align-self: flex-start; background: var(--bot-bg); color: var(--text-dark); }
+        .user { align-self: flex-end; background: var(--user-bg); color: var(--text-light); }
 
-        .message.user {
-          align-self: flex-end;
-          background: var(--user-bg);
-          color: var(--text-light);
-        }
-
-        .input-area {
+        form {
           display: flex;
           gap: 0.5rem;
           padding: 0.75rem;
@@ -115,7 +79,6 @@ class ChatInterface extends HTMLElement {
           border-radius: 20px;
           border: 1px solid #ccc;
           font-size: 1rem;
-          outline: none;
         }
 
         button {
@@ -129,22 +92,16 @@ class ChatInterface extends HTMLElement {
           transition: background 0.2s ease;
         }
 
-        button:hover {
-          background: #357ab8;
-        }
+        button:hover { background: #357ab8; }
       </style>
 
       <div class="chat-container">
-        <header>
-          <h1>Eliza Chat</h1>
-        </header>
-
+        <header><h1>Eliza Chat</h1></header>
         <div class="messages">
           <div class="message bot">Hello! How can I help you?</div>
         </div>
-
-        <form class="input-area">
-          <input type="text" placeholder="Type your message..." required />
+        <form>
+          <input type="text" placeholder="Type a message..." />
           <button type="submit">Send</button>
         </form>
       </div>
@@ -153,23 +110,25 @@ class ChatInterface extends HTMLElement {
     this.messages = this.shadowRoot.querySelector(".messages");
     this.form = this.shadowRoot.querySelector("form");
     this.input = this.shadowRoot.querySelector("input");
-
-    this.setupEventListeners();
+    this.setupListeners();
   }
 
-  setupEventListeners() {
+  // --- Events and message handling ---
+  setupListeners() {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      const text = this.input.value.trim();
-      if (!text) return;
-
-      this.addMessage(text, "user");
-      this.input.value = "";
-
-      const botReply = getBotResponse(text);
-      setTimeout(() => this.addMessage(botReply, "bot"), 400);
+      this.handleSend();
     });
+  }
+
+  handleSend() {
+    const text = this.input.value.trim();
+    if (!text) return;
+    this.addMessage(text, "user");
+    this.input.value = "";
+
+    const reply = getBotResponse(text);
+    setTimeout(() => this.addMessage(reply, "bot"), 400);
   }
 
   addMessage(text, type) {

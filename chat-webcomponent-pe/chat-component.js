@@ -1,34 +1,51 @@
-import { getBotResponse } from '../eliza.js';
+import { getBotResponse } from "../eliza.js";
 
-class Chat extends HTMLElement {
+class SimpleChat extends HTMLElement {
   connectedCallback() {
+    this.chatWindow = this.querySelector("#chatWindow");
+    this.form = this.querySelector("#chatForm");
+    this.input = this.querySelector("#messageBox");
+    this.sendBtn = this.querySelector("#sendBtn");
+    this.setupListeners();
+  }
 
-    this.messages = this.querySelector('.messages');
-    this.form = this.querySelector('form');
-    this.input = this.querySelector('input');
-
-    this.form.addEventListener('submit', (e) => {
+  // --- Events ---
+  setupListeners() {
+    this.form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const userText = this.input.value.trim();
-      if (userText === "") return;
+      this.handleSend();
+    });
 
-      this.addMessage(userText, 'user');
+    this.sendBtn.addEventListener("click", () => this.handleSend());
 
-      const botReply = getBotResponse(userText);
-      this.addMessage(botReply, 'bot');
-
-      this.input.value = "";
+    this.input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        this.handleSend();
+      }
     });
   }
 
-  addMessage(text, sender) {
-    const div = document.createElement('div');
-    div.classList.add('message', sender);
-    div.textContent = text;
+  // --- Send + Bot reply ---
+  handleSend() {
+    const message = this.input.value.trim();
+    if (!message) return;
 
-    this.messages.appendChild(div);
-    this.messages.scrollTop = this.messages.scrollHeight;
+    this.addMessage(message, "User");
+    this.input.value = "";
+
+    const reply = getBotResponse(message);
+    setTimeout(() => this.addMessage(reply, "Bot"), 400);
+  }
+
+  // --- Add message to chat ---
+  addMessage(text, speaker) {
+    const msg = document.createElement("p");
+    msg.className = speaker;
+    msg.textContent = text; 
+    this.chatWindow.appendChild(msg);
+    this.chatWindow.scrollTop = this.chatWindow.scrollHeight;
   }
 }
 
-customElements.define('simple-chat', Chat);
+customElements.define("simple-chat", SimpleChat);

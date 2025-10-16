@@ -1,0 +1,154 @@
+:root {
+  --red: #e74c3c;
+  --orange: #f39c12;
+  --green: #27ae60;
+  --purple: #6c63ff;
+
+  --text-dark: #1f1f1f;
+  --text-muted: #6b6b6b;
+  --border: #e5e5e5;
+  --bg-card: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* --- Page Layout --- */
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(circle at top left, #8b7bff, #6a5acd);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main {
+  background: var(--bg-card);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px var(--shadow);
+  max-width: 750px;
+  width: 95%;
+  padding: 3rem 3.5rem;
+  text-align: center;
+}
+
+/* --- Headings --- */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+/* --- Cards Grid --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --- Card --- */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  text-align: left;
+  box-shadow: 0 2px 6px var(--shadow);
+  position: relative;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  min-height: 400px;
+}
+
+
+.card:hover {
+  box-shadow: 0 4px 12px var(--shadow);
+  transform: translateY(-3px);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+/* --- Checklists --- */
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card li {
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+  line-height: 1.5;
+}
+
+/* --- Demo Link --- */
+.demo-link {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.demo-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Labels --- */
+.label {
+  position: static;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 0.90rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 8px 18px;
+}
+
+.prototype {
+  background: #6b6b6b;
+}
+
+.approach1,
+.approach2,
+.approach3 {
+  background: #e74c3c;
+}
+
+/* --- Footer --- */
+footer {
+  margin-top: 2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

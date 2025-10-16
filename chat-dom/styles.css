@@ -1,4 +1,3 @@
-/* --- Root Variables --- */
 :root {
   --bot-bg: #eeeeee;
   --user-bg: #4a90e2;
@@ -6,9 +5,6 @@
   --chat-bg: #f9f9f9;
   --header-bg: #4a90e2;
   --border-color: #ddd;
-  --note-bg: #fff8dc;
-  --note-border: #f0e68c;
-  --note-text: #555;
   --text-light: #ffffff;
   --text-dark: #222222;
   --gradient-start: #6a5acd;
@@ -16,7 +12,6 @@
   --gradient-end: #9370db;
 }
 
-/* --- Page Setup --- */
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -27,8 +22,7 @@ body {
   background: linear-gradient(160deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
 }
 
-/* --- Main Chat Container --- */
-main {
+chat-widget {
   display: flex;
   flex-direction: column;
   width: 420px;
@@ -39,29 +33,7 @@ main {
   overflow: hidden;
 }
 
-/* --- Header --- */
-header {
-  background: var(--header-bg);
-  color: var(--text-light);
-  padding: 1rem;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-header::after {
-  content: "Prototype: Pure HTML/CSS (Static)";
-  display: block;
-  font-size: 0.8rem;
-  color: #dbe9ff;
-  margin-top: 0.25rem;
-}
-
-/* --- Chat History --- */
-#chat-history {
+#chatWindow {
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
@@ -71,8 +43,7 @@ header::after {
   background: var(--chat-bg);
 }
 
-/* --- Message Bubbles --- */
-.message {
+p {
   max-width: 75%;
   padding: 0.6rem 0.9rem;
   border-radius: 14px;
@@ -80,37 +51,23 @@ header::after {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.message.bot {
+.Bot {
   align-self: flex-start;
   background: var(--bot-bg);
   color: var(--text-dark);
 }
 
-.message.user {
+.User {
   align-self: flex-end;
   background: var(--user-bg);
   color: var(--text-light);
 }
 
-.message time {
-  display: block;
-  font-size: 0.7rem;
-  opacity: 0.7;
-  margin-top: 0.25rem;
-}
-
-/* --- Input Area --- */
-footer {
-  background: #f6f6f6;
-  border-top: 1px solid var(--border-color);
-  padding: 0.5rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
 form {
   display: flex;
+  padding: 0.5rem;
+  background: #f6f6f6;
+  border-top: 1px solid var(--border-color);
   gap: 0.5rem;
 }
 
@@ -120,26 +77,67 @@ input[type="text"] {
   border-radius: 20px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  outline: none;
 }
 
 button {
-  background: #b0b0b0;
-  color: var(--text-light);
+  background: var(--user-bg);
+  color: white;
   border: none;
   border-radius: 20px;
   padding: 0.7rem 1.4rem;
-  cursor: not-allowed;
+  cursor: pointer;
   font-weight: 500;
+  transition: background 0.2s ease;
 }
 
-/* --- Info Footer --- */
-footer::after {
-  background: var(--note-bg);
-  border: 1px solid var(--note-border);
-  border-radius: 6px;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.8rem;
-  color: var(--note-text);
+button:hover {
+  background: #357ab8;
+}
+
+.chat-app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(160deg, #6a5acd, #836fff, #9370db);
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  height: 620px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.chat-header {
+  background: #4a90e2;
+  color: white;
+  padding: 1.2rem;
   text-align: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.chat-header p {
+  margin: 0.3rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 0.95;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
