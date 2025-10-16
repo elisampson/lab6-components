@@ -9,7 +9,6 @@ class ChatInterface extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.innerHTML = `
       <style>
-        
         :host {
           --bot-bg: #eeeeee;
           --user-bg: #4a90e2;
@@ -21,19 +20,24 @@ class ChatInterface extends HTMLElement {
           --gradient-start: #6a5acd;
           --gradient-mid: #836fff;
           --gradient-end: #9370db;
-            
-          position: fixed;   
-          inset: 0;     
+
+          position: fixed;
+          inset: 0;
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100vh;
           width: 100vw;
-          background: linear-gradient(160deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+          background: linear-gradient(
+            160deg,
+            var(--gradient-start),
+            var(--gradient-mid),
+            var(--gradient-end)
+          );
           font-family: "Segoe UI", Arial, sans-serif;
           margin: 0;
-          padding: 0;              
-          box-sizing: border-box;  
+          padding: 0;
+          box-sizing: border-box;
         }
 
         .chat-container {
@@ -150,8 +154,13 @@ class ChatInterface extends HTMLElement {
     this.form = this.shadowRoot.querySelector("form");
     this.input = this.shadowRoot.querySelector("input");
 
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const text = this.input.value.trim();
       if (!text) return;
 
