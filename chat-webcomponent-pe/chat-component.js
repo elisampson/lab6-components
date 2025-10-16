@@ -1,50 +1,43 @@
 import { getBotResponse } from "../eliza.js";
 
 class SimpleChat extends HTMLElement {
-  connectedCallback() {
-    this.chatWindow = this.querySelector("#chatWindow");
-    this.form = this.querySelector("#chatForm");
-    this.input = this.querySelector("#messageBox");
-    this.sendBtn = this.querySelector("#sendBtn");
-    this.setupListeners();
+  constructor() {
+    super();
   }
 
-  // --- Events ---
-  setupListeners() {
+  connectedCallback() {
+    // Select internal elements
+    this.messages = this.querySelector(".messages");
+    this.form = this.querySelector("form");
+    this.input = this.querySelector("input");
+
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    // Handle form submission (prevents page reload)
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.handleSend();
-    });
 
-    this.sendBtn.addEventListener("click", () => this.handleSend());
+      const text = this.input.value.trim();
+      if (!text) return;
 
-    this.input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        this.handleSend();
-      }
+      // Add user's message
+      this.addMessage(text, "user");
+      this.input.value = "";
+
+      // Bot response
+      const reply = getBotResponse(text);
+      setTimeout(() => this.addMessage(reply, "bot"), 400);
     });
   }
 
-  // --- Send + Bot reply ---
-  handleSend() {
-    const message = this.input.value.trim();
-    if (!message) return;
-
-    this.addMessage(message, "User");
-    this.input.value = "";
-
-    const reply = getBotResponse(message);
-    setTimeout(() => this.addMessage(reply, "Bot"), 400);
-  }
-
-  // --- Add message to chat ---
-  addMessage(text, speaker) {
-    const msg = document.createElement("p");
-    msg.className = speaker;
-    msg.textContent = text; 
-    this.chatWindow.appendChild(msg);
-    this.chatWindow.scrollTop = this.chatWindow.scrollHeight;
+  addMessage(text, sender) {
+    const msg = document.createElement("div");
+    msg.className = `message ${sender}`;
+    msg.textContent = text;
+    this.messages.appendChild(msg);
+    this.messages.scrollTop = this.messages.scrollHeight;
   }
 }
 

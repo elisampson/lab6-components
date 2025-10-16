@@ -8,23 +8,20 @@
   <script type="module" src="chat-component.js" defer></script>
 </head>
 <body>
-  <main class="chat-app">
-    <div class="chat-box">
-      <header class="chat-header">
-        <h1>Chat Assistant</h1>
-        <p>Approach: DOM Manipulation</p>
-      </header>
+  <simple-chat>
+    <header class="chat-header">
+      <h1>Chat Assistant</h1>
+      <p>Approach: Progressive Enhancement</p>
+    </header>
 
-      <div id="chatWindow" class="messages">
-        <p class="Bot">Hello! How can I help you?</p>
-      </div>
-
-      <form id="chatForm">
-        <input type="text" id="messageBox" placeholder="Type a message..." />
-        <button id="sendBtn" type="submit">Send</button>
-      </form>
+    <div class="messages">
+      <div class="message bot">Hello! How can I help you?</div>
     </div>
-  </main>
-</body>
 
+    <form class="input-area">
+      <input type="text" placeholder="Type a message..." required />
+      <button type="submit">Send</button>
+    </form>
+  </simple-chat>
+</body>
 </html>

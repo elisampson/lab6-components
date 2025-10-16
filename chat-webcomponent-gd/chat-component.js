@@ -7,7 +7,6 @@ class ChatInterface extends HTMLElement {
   }
 
   connectedCallback() {
-    // --- Build shadow structure ---
     this.shadowRoot.innerHTML = `
       <style>
         :host {
@@ -18,12 +17,16 @@ class ChatInterface extends HTMLElement {
           --header-bg: #4a90e2;
           --text-light: #ffffff;
           --text-dark: #222222;
+          position: fixed;
+          inset: 0;
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100vh;
           background: linear-gradient(160deg, #6a5acd, #836fff, #9370db);
           font-family: "Segoe UI", Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
         }
 
         .chat-container {
@@ -62,8 +65,17 @@ class ChatInterface extends HTMLElement {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .bot { align-self: flex-start; background: var(--bot-bg); color: var(--text-dark); }
-        .user { align-self: flex-end; background: var(--user-bg); color: var(--text-light); }
+        .bot {
+          align-self: flex-start;
+          background: var(--bot-bg);
+          color: var(--text-dark);
+        }
+
+        .user {
+          align-self: flex-end;
+          background: var(--user-bg);
+          color: var(--text-light);
+        }
 
         form {
           display: flex;
@@ -92,7 +104,9 @@ class ChatInterface extends HTMLElement {
           transition: background 0.2s ease;
         }
 
-        button:hover { background: #357ab8; }
+        button:hover {
+          background: #357ab8;
+        }
       </style>
 
       <div class="chat-container">
@@ -113,7 +127,6 @@ class ChatInterface extends HTMLElement {
     this.setupListeners();
   }
 
-  // --- Events and message handling ---
   setupListeners() {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -126,7 +139,6 @@ class ChatInterface extends HTMLElement {
     if (!text) return;
     this.addMessage(text, "user");
     this.input.value = "";
-
     const reply = getBotResponse(text);
     setTimeout(() => this.addMessage(reply, "bot"), 400);
   }
