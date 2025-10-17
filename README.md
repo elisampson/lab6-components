@@ -17,3 +17,10 @@ Each version follows the same layout and functionality besides the static approa
 - **Message Window:** Scrollable section for bot and user messages
 - **Input Area:** Text box and send button at the bottom of the box
 
+## Development Approach
+The lab was completed through an incremental process:
+1. Build the static layout with semantic HTML and CSS
+2. Add interactivity using DOM manipulation
+3. Enhance progressivley with custom element wrapping
+4. Encapsulate logic and styles with the Shadow DOM
+5. Consistent funcitonality and styling across all verions 
