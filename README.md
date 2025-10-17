@@ -24,3 +24,21 @@ The lab was completed through an incremental process:
 3. Enhance progressivley with custom element wrapping
 4. Encapsulate logic and styles with the Shadow DOM
 5. Consistent funcitonality and styling across all verions 
+
+## Repository Structure
+├── chat-prototype-html-css/ # Static prototype (HTML/CSS only)
+├── chat-dom/ # DOM manipulation version
+├── chat-webcomponent-pe/ # Progressive enhancement component
+├── chat-webcomponent-gd/ # Fully encapsulated Shadow DOM component
+├── eliza.js # Simple Eliza-style response logic
+├── index.html # Main navigation page for all versions
+└── README.md # Project documentation
+
+## Design Dcisions
+- Use of CSS Variables for consistent style
+
+## License
+This project is licensed under the **MIT License** — see [LICENSE.md](LICENSE.md) for details.
+
+## Author 
+**William Sampson**
