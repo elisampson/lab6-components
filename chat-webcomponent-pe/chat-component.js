@@ -5,8 +5,8 @@ class SimpleChat extends HTMLElement {
     super();
   }
 
+  // Select internal elements
   connectedCallback() {
-    // Select internal elements
     this.messages = this.querySelector(".messages");
     this.form = this.querySelector("form");
     this.input = this.querySelector("input");
@@ -14,19 +14,17 @@ class SimpleChat extends HTMLElement {
     this.setupEventListeners();
   }
 
+  // Handle form submission (prevents page reload)
   setupEventListeners() {
-    // Handle form submission (prevents page reload)
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const text = this.input.value.trim();
       if (!text) return;
 
-      // Add user's message
       this.addMessage(text, "user");
       this.input.value = "";
 
-      // Bot response
       const reply = getBotResponse(text);
       setTimeout(() => this.addMessage(reply, "bot"), 400);
     });

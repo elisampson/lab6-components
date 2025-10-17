@@ -121,6 +121,7 @@ class ChatInterface extends HTMLElement {
       </div>
     `;
 
+    // Select internal elements
     this.messages = this.shadowRoot.querySelector(".messages");
     this.form = this.shadowRoot.querySelector("form");
     this.input = this.shadowRoot.querySelector("input");
