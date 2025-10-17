@@ -24,9 +24,6 @@ class ChatInterface extends HTMLElement {
           align-items: center;
           background: linear-gradient(160deg, #6a5acd, #836fff, #9370db);
           font-family: "Segoe UI", Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
         }
 
         .chat-container {

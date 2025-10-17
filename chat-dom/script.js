@@ -3,9 +3,8 @@ import { getBotResponse } from "../eliza.js";
 const chatWindow = document.getElementById("chatWindow");
 const form = document.getElementById("chatForm");
 const input = document.getElementById("messageBox");
-const sendBtn = document.getElementById("sendBtn");
 
-// --- Add message bubbles ---
+// Add a message to the chat window
 function addToChatWindow(message, speaker) {
   const p = document.createElement("p");
   p.className = speaker;
@@ -14,7 +13,7 @@ function addToChatWindow(message, speaker) {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-// --- Send + bot reply ---
+// Handle sending the user's message and bot reply
 function send() {
   const message = input.value.trim();
   if (!message) return;
@@ -27,12 +26,16 @@ function send() {
   setTimeout(() => addToChatWindow(response, "Bot"), 400);
 }
 
-// --- Event listeners ---
+// Initialize event listeners
 function init() {
-  sendBtn.addEventListener("click", send);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    send();
+  });
+
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      e.preventDefault();
+      e.preventDefault(); 
       send();
     }
   });

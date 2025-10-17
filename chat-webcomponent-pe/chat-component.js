@@ -1,10 +1,6 @@
 import { getBotResponse } from "../eliza.js";
 
 class SimpleChat extends HTMLElement {
-  constructor() {
-    super();
-  }
-
   // Select internal elements
   connectedCallback() {
     this.messages = this.querySelector(".messages");
