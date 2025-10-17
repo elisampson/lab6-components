@@ -99,13 +99,14 @@ button:hover {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(160deg, #6a5acd, #836fff, #9370db);
+  background: linear-gradient(160deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+
 }
 
 .chat-box {
   display: flex;
   flex-direction: column;
-  width: 420px;
+  width: 600px;
   height: 620px;
   background: #ffffff;
   border-radius: 12px;

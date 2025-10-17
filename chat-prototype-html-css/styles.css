@@ -31,7 +31,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  width: 420px;
+  width: 600px;
   height: 620px;
   background: var(--main-bg);
   border-radius: 12px;
@@ -144,3 +144,4 @@ footer::after {
   color: var(--note-text);
   text-align: center;
 }
+

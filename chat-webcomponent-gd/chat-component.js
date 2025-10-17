@@ -29,7 +29,7 @@ class ChatInterface extends HTMLElement {
         .chat-container {
           display: flex;
           flex-direction: column;
-          width: 420px;
+          width: 600px;
           height: 620px;
           background: var(--main-bg);
           border-radius: 12px;
